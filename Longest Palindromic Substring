@@ -1,0 +1,47 @@
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function(s) {
+    let ans="";
+    if(s.length<=1){
+        return s;
+    }
+    for(i=1;i<s.length;i++)
+    {
+        let low=i;
+        let high=i;
+        while(s[low]==s[high])
+        {
+            low--;
+            high++;
+            if(low==-1 || high==s.length)
+            {
+                break;
+            }
+        }
+        let p=s.substring(low+1,high);
+        if(ans.length<p.length)
+        {
+            ans=p;
+        }
+
+        low=i-1;
+        high=i;
+        while(s[low]==s[high])
+        {
+            low--;
+            high++;
+            if(low==-1 || high==s.length)
+            {
+                break;
+            }
+        }
+        p=s.substring(low+1,high);
+        if(ans.length<p.length)
+        {
+            ans=p;
+        }
+    }
+    return ans;
+};
